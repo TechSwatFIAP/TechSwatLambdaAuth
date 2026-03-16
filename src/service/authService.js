@@ -2,9 +2,10 @@
 
 const jwt = require("jsonwebtoken");
 const { normalizeCpf, isValidCpf } = require("../util/cpf");
+const { getCustomerStatus } = require("./customerService");
 
 /**
- * Simulate credential validation.
+ * Validate credentials and customer status.
  * @param {string} cpf
  * @param {string} otp
  * @returns {Promise<boolean>}
@@ -16,7 +17,13 @@ async function validateCredentials(cpf, otp) {
   }
 
   // Simulated OTP validation (replace with real provider in production).
-  return otp === "123456";
+  if (otp !== "123456") {
+    return false;
+  }
+
+  // Validate that the customer account is active.
+  const status = await getCustomerStatus(normalized);
+  return status === "active";
 }
 
 /**
