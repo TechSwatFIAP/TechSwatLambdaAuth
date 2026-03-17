@@ -5,7 +5,8 @@
   "main": "src/handler.js",
   "type": "commonjs",
   "scripts": {
-    "start": "node src/handler.js",
+    "dev": "node scripts/invoke.js",
+    "dev:local": "cross-env ENV_FILE=.env.dev node scripts/invoke.js",
     "test": "jest"
   },
   "dependencies": {
@@ -13,6 +14,7 @@
     "jsonwebtoken": "^9.0.2"
   },
   "devDependencies": {
+    "cross-env": "^10.1.0",
     "jest": "^29.7.0"
   }
 }
